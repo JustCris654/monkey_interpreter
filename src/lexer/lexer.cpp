@@ -37,6 +37,24 @@ Token Lexer::nextToken() {
     case '+':
         tok = Token{TOKEN::PLUS, std::string(1, this->byte)};
         break;
+    case '-':
+        tok = Token{TOKEN::MINUS, std::string(1, this->byte)};
+        break;
+    case '!':
+        tok = Token{TOKEN::BANG, std::string(1, this->byte)};
+        break;
+    case '*':
+        tok = Token{TOKEN::ASTERISK, std::string(1, this->byte)};
+        break;
+    case '/':
+        tok = Token{TOKEN::SLASH, std::string(1, this->byte)};
+        break;
+    case '<':
+        tok = Token{TOKEN::LT, std::string(1, this->byte)};
+        break;
+    case '>':
+        tok = Token{TOKEN::GT, std::string(1, this->byte)};
+        break;
     case '(':
         tok = Token{TOKEN::LPAREN, std::string(1, this->byte)};
         break;

@@ -14,9 +14,11 @@ TEST(TokenTest, BasicAssertions) {
     const char *input = "let five = 5;\n"
                         "let ten = 10;\n"
                         "let add = fn(x, y) {\n"
-                        "    x + y;\n"
+                        "x + y;\n"
                         "};\n"
-                        "let result = add(five, ten);";
+                        "let result = add(five, ten);\n"
+                        "!-/*5;\n"
+                        "5 < 10 > 5;\n";
 
     std::vector<ExpectedToken> expectedTokens;
     const ExpectedToken        tkns[] = {
@@ -38,6 +40,12 @@ TEST(TokenTest, BasicAssertions) {
         {TOKEN::LPAREN, "("},    {TOKEN::IDENT, "five"},
         {TOKEN::COMMA, ","},     {TOKEN::IDENT, "ten"},
         {TOKEN::RPAREN, ")"},    {TOKEN::SEMICOLON, ";"},
+        {TOKEN::BANG, "!"},      {TOKEN::MINUS, "-"},
+        {TOKEN::SLASH, "/"},     {TOKEN::ASTERISK, "*"},
+        {TOKEN::INT, "5"},       {TOKEN::SEMICOLON, ";"},
+        {TOKEN::INT, "5"},       {TOKEN::LT, "<"},
+        {TOKEN::INT, "10"},      {TOKEN::GT, ">"},
+        {TOKEN::INT, "5"},       {TOKEN::SEMICOLON, ";"},
     };
     for (size_t i = 0; i < sizeof(tkns) / sizeof(tkns[0]); ++i) {
         expectedTokens.push_back(tkns[i]);

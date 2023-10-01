@@ -18,6 +18,14 @@ const TokenType INT = "INT";
 // Operators
 const TokenType ASSIGN = "=";
 const TokenType PLUS = "+";
+const TokenType MINUS = "-";
+const TokenType BANG = "!";
+const TokenType ASTERISK = "*";
+const TokenType SLASH = "/";
+
+// less than - greater than
+const TokenType LT = "<";
+const TokenType GT = ">";
 
 // Delimeters
 const TokenType COMMA = ",";
