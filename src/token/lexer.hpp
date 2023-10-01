@@ -13,7 +13,9 @@ class Lexer {
   private:
     void        readChar();
     std::string readIdentifier();
-    bool        isLetter(char);
+    std::string readNumber();
+    bool        isLetter(char &);
+    void        skipWhitespaces();
 
   private:
     std::string input;

@@ -24,7 +24,7 @@ enable_testing()
 add_executable(
   lexer_test
   ${CMAKE_SOURCE_DIR}/tests/lexer_test.cpp
-  ${CMAKE_SOURCE_DIR}/src/token/token.hpp
+  ${CMAKE_SOURCE_DIR}/src/token/token.cpp
   ${CMAKE_SOURCE_DIR}/src/token/lexer.cpp)
 target_include_directories(lexer_test PRIVATE src/token)
 target_link_libraries(lexer_test GTest::gtest_main)
@@ -32,7 +32,7 @@ include(GoogleTest)
 gtest_discover_tests(lexer_test)
 
 set(PROJECT_SOURCES
-    ${CMAKE_SOURCE_DIR}/src/main.cpp ${CMAKE_SOURCE_DIR}/src/token/token.hpp
+    ${CMAKE_SOURCE_DIR}/src/main.cpp ${CMAKE_SOURCE_DIR}/src/token/token.cpp
     ${CMAKE_SOURCE_DIR}/src/token/lexer.hpp)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})

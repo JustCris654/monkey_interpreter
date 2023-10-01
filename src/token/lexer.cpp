@@ -22,6 +22,8 @@ void Lexer::readChar() {
 Token Lexer::nextToken() {
     Token tok;
 
+    this->skipWhitespaces();
+
     switch (this->byte) {
     case '=':
         tok = Token{TOKEN::ASSIGN, std::string(1, this->byte)};
@@ -53,7 +55,11 @@ Token Lexer::nextToken() {
     default: // this means it is a letter or an illegal token
         if (this->isLetter(this->byte)) {
             tok.literal = this->readIdentifier();
-            tok.type = TOKEN::IDENT;
+            tok.type = lookupIdent(tok.literal);
+            return tok;
+        } else if (std::isdigit(this->byte)) {
+            tok.literal = this->readNumber();
+            tok.type = TOKEN::INT;
             return tok;
         } else {
             tok = Token{TOKEN::ILLEGAL, std::string(1, this->byte)};
@@ -76,6 +82,23 @@ std::string Lexer::readIdentifier() {
     return this->input.substr(position, this->position - position);
 }
 
-bool Lexer::isLetter(char ch) {
+std::string Lexer::readNumber() {
+    const size_t position = this->position;
+
+    while (std::isdigit(this->byte)) {
+        this->readChar();
+    }
+
+    return this->input.substr(position, this->position - position);
+}
+
+bool Lexer::isLetter(char &ch) {
     return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == '_';
+}
+
+void Lexer::skipWhitespaces() {
+    while (this->byte == ' ' || this->byte == '\n' || this->byte == '\t' ||
+           this->byte == '\r') {
+        this->readChar();
+    }
 }
