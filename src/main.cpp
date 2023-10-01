@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv) {
 
-    std::string ciao = LPAREN;
+    std::string ciao = TOKEN::RPAREN;
     std::cout << ciao << std::endl;
 
     return 0;

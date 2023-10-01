@@ -3,6 +3,7 @@
 
 #include <string>
 
+namespace TOKEN {
 const std::string ILLEGAL = "ILLEGAL";
 const std::string END_OF_FILE = "EOF";
 
@@ -27,11 +28,13 @@ const std::string RBRACE = "}";
 const std::string FUNCTION = "FUNCTION";
 const std::string LET = "LET";
 
-typedef std::string TokenType;
+} // namespace TOKEN
+
+typedef std::string
+    TokenType; // should contain only values defined in the TOKEN namespace
 
 typedef struct {
     TokenType   type;
     std::string literal;
 } Token;
-
 #endif

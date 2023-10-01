@@ -28,8 +28,9 @@ target_link_libraries(token_test GTest::gtest_main)
 include(GoogleTest)
 gtest_discover_tests(token_test)
 
-set(PROJECT_SOURCES ${CMAKE_SOURCE_DIR}/src/main.cpp
-                    ${CMAKE_SOURCE_DIR}/src/token/token.hpp)
+set(PROJECT_SOURCES
+    ${CMAKE_SOURCE_DIR}/src/main.cpp ${CMAKE_SOURCE_DIR}/src/token/token.hpp
+    ${CMAKE_SOURCE_DIR}/src/token/lexer.hpp)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
