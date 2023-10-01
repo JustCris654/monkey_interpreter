@@ -11,13 +11,33 @@ typedef struct {
 } ExpectedToken;
 
 TEST(TokenTest, BasicAssertions) {
-    const char *input = "=+(){},;";
+    const char *input = "let five = 5;\n"
+                        "let ten = 10;\n"
+                        "let add = fn(x, y) {\n"
+                        "    x + y;\n"
+                        "};\n"
+                        "let result = add(five, ten);";
 
     std::vector<ExpectedToken> expectedTokens;
     const ExpectedToken        tkns[] = {
-        {TOKEN::ASSIGN, "="}, {TOKEN::PLUS, "+"},      {TOKEN::LPAREN, "("},
-        {TOKEN::RPAREN, ")"}, {TOKEN::LBRACE, "{"},    {TOKEN::RBRACE, "}"},
-        {TOKEN::COMMA, ","},  {TOKEN::SEMICOLON, ";"}, {TOKEN::END_OF_FILE, ""},
+        {TOKEN::LET, "let"},     {TOKEN::IDENT, "five"},
+        {TOKEN::ASSIGN, "="},    {TOKEN::INT, "5"},
+        {TOKEN::SEMICOLON, ";"}, {TOKEN::LET, "let"},
+        {TOKEN::IDENT, "ten"},   {TOKEN::ASSIGN, "="},
+        {TOKEN::INT, "10"},      {TOKEN::SEMICOLON, ";"},
+        {TOKEN::LET, "let"},     {TOKEN::IDENT, "add"},
+        {TOKEN::ASSIGN, "="},    {TOKEN::FUNCTION, "fn"},
+        {TOKEN::LPAREN, "("},    {TOKEN::IDENT, "x"},
+        {TOKEN::COMMA, ","},     {TOKEN::IDENT, "y"},
+        {TOKEN::RPAREN, ")"},    {TOKEN::LBRACE, "{"},
+        {TOKEN::IDENT, "x"},     {TOKEN::PLUS, "+"},
+        {TOKEN::IDENT, "y"},     {TOKEN::SEMICOLON, ";"},
+        {TOKEN::RBRACE, "}"},    {TOKEN::SEMICOLON, ";"},
+        {TOKEN::LET, "let"},     {TOKEN::IDENT, "result"},
+        {TOKEN::ASSIGN, "="},    {TOKEN::IDENT, "add"},
+        {TOKEN::LPAREN, "("},    {TOKEN::IDENT, "five"},
+        {TOKEN::COMMA, ","},     {TOKEN::IDENT, "ten"},
+        {TOKEN::RPAREN, ")"},    {TOKEN::SEMICOLON, ";"},
     };
     for (size_t i = 0; i < sizeof(tkns) / sizeof(tkns[0]); ++i) {
         expectedTokens.push_back(tkns[i]);
