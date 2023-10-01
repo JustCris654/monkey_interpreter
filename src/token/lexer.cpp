@@ -50,9 +50,32 @@ Token Lexer::nextToken() {
     case 0:
         tok = Token{TOKEN::END_OF_FILE, ""};
         break;
+    default: // this means it is a letter or an illegal token
+        if (this->isLetter(this->byte)) {
+            tok.literal = this->readIdentifier();
+            tok.type = TOKEN::IDENT;
+            return tok;
+        } else {
+            tok = Token{TOKEN::ILLEGAL, std::string(1, this->byte)};
+        }
+        break;
     }
 
     this->readChar();
 
     return tok;
+}
+
+std::string Lexer::readIdentifier() {
+    const size_t position = this->position;
+
+    while (this->isLetter(this->byte)) {
+        this->readChar();
+    }
+
+    return this->input.substr(position, this->position - position);
+}
+
+bool Lexer::isLetter(char ch) {
+    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == '_';
 }

@@ -8,8 +8,12 @@ class Lexer {
     Lexer(std::string);
     ~Lexer();
 
-    void readChar();
     Token nextToken();
+
+  private:
+    void        readChar();
+    std::string readIdentifier();
+    bool        isLetter(char);
 
   private:
     std::string input;
