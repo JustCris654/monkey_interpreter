@@ -35,9 +35,9 @@ Token Lexer::nextToken() {
     switch (this->byte) {
     case '=':
         if (this->peekChar() == '=') {
-            const char curChar = this->byte;
+            const std::string val(1, this->byte);
             this->readChar();
-            tok = Token{TOKEN::EQ, std::string() + curChar + this->byte};
+            tok = Token{TOKEN::EQ, val + this->byte};
         } else {
             tok = Token{TOKEN::ASSIGN, std::string(1, this->byte)};
         }
@@ -56,9 +56,9 @@ Token Lexer::nextToken() {
         break;
     case '!':
         if (this->peekChar() == '=') {
-            const char curChar = this->byte;
+            const std::string val(1, this->byte);
             this->readChar();
-            tok = Token{TOKEN::NOT_EQ, std::string() + curChar + this->byte};
+            tok = Token{TOKEN::NOT_EQ, val + this->byte};
         } else {
             tok = Token{TOKEN::BANG, std::string(1, this->byte)};
         }
