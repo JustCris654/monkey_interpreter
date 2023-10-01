@@ -2,7 +2,7 @@
 
 #include "token.hpp"
 
-int main(int argc, char **argv) {
+int main(int, char **) {
 
     std::string ciao = TOKEN::RPAREN;
     std::cout << ciao << std::endl;

@@ -22,14 +22,14 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(
-  token_test
-  ${CMAKE_SOURCE_DIR}/tests/token_test.cpp
+  lexer_test
+  ${CMAKE_SOURCE_DIR}/tests/lexer_test.cpp
   ${CMAKE_SOURCE_DIR}/src/token/token.hpp
   ${CMAKE_SOURCE_DIR}/src/token/lexer.cpp)
-target_include_directories(token_test PRIVATE src/token)
-target_link_libraries(token_test GTest::gtest_main)
+target_include_directories(lexer_test PRIVATE src/token)
+target_link_libraries(lexer_test GTest::gtest_main)
 include(GoogleTest)
-gtest_discover_tests(token_test)
+gtest_discover_tests(lexer_test)
 
 set(PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/src/main.cpp ${CMAKE_SOURCE_DIR}/src/token/token.hpp
