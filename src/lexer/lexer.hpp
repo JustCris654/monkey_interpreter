@@ -12,6 +12,7 @@ class Lexer {
 
   private:
     void        readChar();
+    char        peekChar();
     std::string readIdentifier();
     std::string readNumber();
     bool        isLetter(char &);

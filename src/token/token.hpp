@@ -27,6 +27,9 @@ const TokenType SLASH = "/";
 const TokenType LT = "<";
 const TokenType GT = ">";
 
+const TokenType EQ = "==";
+const TokenType NOT_EQ = "!=";
+
 // Delimeters
 const TokenType COMMA = ",";
 const TokenType SEMICOLON = ";";

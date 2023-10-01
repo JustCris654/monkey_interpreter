@@ -19,6 +19,14 @@ void Lexer::readChar() {
     this->position = readPosition++;
 }
 
+char Lexer::peekChar() {
+    if (this->readPosition >= this->input.size()) {
+        return 0;
+    } else {
+        return this->input[this->readPosition];
+    }
+}
+
 Token Lexer::nextToken() {
     Token tok;
 
@@ -26,7 +34,13 @@ Token Lexer::nextToken() {
 
     switch (this->byte) {
     case '=':
-        tok = Token{TOKEN::ASSIGN, std::string(1, this->byte)};
+        if (this->peekChar() == '=') {
+            const char curChar = this->byte;
+            this->readChar();
+            tok = Token{TOKEN::EQ, std::string() + curChar + this->byte};
+        } else {
+            tok = Token{TOKEN::ASSIGN, std::string(1, this->byte)};
+        }
         break;
     case ';':
         tok = Token{TOKEN::SEMICOLON, std::string(1, this->byte)};
@@ -41,7 +55,13 @@ Token Lexer::nextToken() {
         tok = Token{TOKEN::MINUS, std::string(1, this->byte)};
         break;
     case '!':
-        tok = Token{TOKEN::BANG, std::string(1, this->byte)};
+        if (this->peekChar() == '=') {
+            const char curChar = this->byte;
+            this->readChar();
+            tok = Token{TOKEN::NOT_EQ, std::string() + curChar + this->byte};
+        } else {
+            tok = Token{TOKEN::BANG, std::string(1, this->byte)};
+        }
         break;
     case '*':
         tok = Token{TOKEN::ASTERISK, std::string(1, this->byte)};

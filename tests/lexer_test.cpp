@@ -23,7 +23,9 @@ TEST(TokenTest, BasicAssertions) {
                         "return true;\n"
                         "} else {\n"
                         "return false;\n"
-                        "}\n";
+                        "}\n"
+                        "10 == 10;\n"
+                        "10 != 9;\n";
 
     std::vector<ExpectedToken> expectedTokens;
     const ExpectedToken        tkns[] = {
@@ -59,7 +61,11 @@ TEST(TokenTest, BasicAssertions) {
         {TOKEN::RBRACE, "}"},    {TOKEN::ELSE, "else"},
         {TOKEN::LBRACE, "{"},    {TOKEN::RETURN, "return"},
         {TOKEN::FALSE, "false"}, {TOKEN::SEMICOLON, ";"},
-        {TOKEN::RBRACE, "}"},
+        {TOKEN::RBRACE, "}"},    {TOKEN::INT, "10"},
+        {TOKEN::EQ, "=="},       {TOKEN::INT, "10"},
+        {TOKEN::SEMICOLON, ";"}, {TOKEN::INT, "10"},
+        {TOKEN::NOT_EQ, "!="},   {TOKEN::INT, "9"},
+        {TOKEN::SEMICOLON, ";"},
 
     };
     for (size_t i = 0; i < sizeof(tkns) / sizeof(tkns[0]); ++i) {
