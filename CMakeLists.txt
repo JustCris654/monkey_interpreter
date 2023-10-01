@@ -21,8 +21,11 @@ FetchContent_MakeAvailable(googletest)
 # run google tests
 enable_testing()
 
-add_executable(token_test ${CMAKE_SOURCE_DIR}/tests/token_test.cpp
-                          ${CMAKE_SOURCE_DIR}/src/token/token.hpp)
+add_executable(
+  token_test
+  ${CMAKE_SOURCE_DIR}/tests/token_test.cpp
+  ${CMAKE_SOURCE_DIR}/src/token/token.hpp
+  ${CMAKE_SOURCE_DIR}/src/token/lexer.cpp)
 target_include_directories(token_test PRIVATE src/token)
 target_link_libraries(token_test GTest::gtest_main)
 include(GoogleTest)

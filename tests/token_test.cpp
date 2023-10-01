@@ -28,7 +28,7 @@ TEST(TokenTest, BasicAssertions) {
     for (auto it = expectedTokens.begin(); it != expectedTokens.end(); ++it) {
         auto token = lexer.nextToken();
 
-        EXPECT_STREQ(token.type, it->expectedType);
-        EXPECT_STREQ(token.literal, it->expectedLiteral);
+        EXPECT_STREQ(token.type.c_str(), it->expectedType.c_str());
+        EXPECT_STREQ(token.literal.c_str(), it->expectedLiteral.c_str());
     }
 }
