@@ -39,9 +39,17 @@ const TokenType RBRACE = "}";
 // Keywords
 const TokenType FUNCTION = "FUNCTION";
 const TokenType LET = "LET";
+const TokenType TRUE = "TRUE";
+const TokenType FALSE = "FALSE";
+const TokenType IF = "IF";
+const TokenType ELSE = "ELSE";
+const TokenType RETURN = "RETURN";
 
 const std::unordered_map<std::string, TokenType> keywords{
-    {"fn", TOKEN::FUNCTION}, {"let", TOKEN::LET}};
+    {"fn", TOKEN::FUNCTION},   {"let", TOKEN::LET}, {"true", TOKEN::TRUE},
+    {"false", TOKEN::FALSE},   {"if", TOKEN::IF},   {"else", TOKEN::ELSE},
+    {"return", TOKEN::RETURN},
+};
 } // namespace TOKEN
 
 typedef struct {

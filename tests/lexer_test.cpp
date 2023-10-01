@@ -18,7 +18,12 @@ TEST(TokenTest, BasicAssertions) {
                         "};\n"
                         "let result = add(five, ten);\n"
                         "!-/*5;\n"
-                        "5 < 10 > 5;\n";
+                        "5 < 10 > 5;\n"
+                        "if (5 < 10) {\n"
+                        "return true;\n"
+                        "} else {\n"
+                        "return false;\n"
+                        "}\n";
 
     std::vector<ExpectedToken> expectedTokens;
     const ExpectedToken        tkns[] = {
@@ -46,6 +51,16 @@ TEST(TokenTest, BasicAssertions) {
         {TOKEN::INT, "5"},       {TOKEN::LT, "<"},
         {TOKEN::INT, "10"},      {TOKEN::GT, ">"},
         {TOKEN::INT, "5"},       {TOKEN::SEMICOLON, ";"},
+        {TOKEN::IF, "if"},       {TOKEN::LPAREN, "("},
+        {TOKEN::INT, "5"},       {TOKEN::LT, "<"},
+        {TOKEN::INT, "10"},      {TOKEN::RPAREN, ")"},
+        {TOKEN::LBRACE, "{"},    {TOKEN::RETURN, "return"},
+        {TOKEN::TRUE, "true"},   {TOKEN::SEMICOLON, ";"},
+        {TOKEN::RBRACE, "}"},    {TOKEN::ELSE, "else"},
+        {TOKEN::LBRACE, "{"},    {TOKEN::RETURN, "return"},
+        {TOKEN::FALSE, "false"}, {TOKEN::SEMICOLON, ";"},
+        {TOKEN::RBRACE, "}"},
+
     };
     for (size_t i = 0; i < sizeof(tkns) / sizeof(tkns[0]); ++i) {
         expectedTokens.push_back(tkns[i]);
