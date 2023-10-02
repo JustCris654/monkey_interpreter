@@ -1,11 +1,11 @@
 #include <iostream>
 
 #include "token.hpp"
+#include "repl.hpp"
 
 int main(int, char **) {
 
-    std::string ciao = TOKEN::RPAREN;
-    std::cout << ciao << std::endl;
+    start();
 
     return 0;
 }
