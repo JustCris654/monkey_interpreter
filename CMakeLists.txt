@@ -32,13 +32,11 @@ include(GoogleTest)
 gtest_discover_tests(lexer_test)
 
 set(PROJECT_SOURCES
-    ${CMAKE_SOURCE_DIR}/src/main.cpp
-    ${CMAKE_SOURCE_DIR}/src/token/token.cpp
+    ${CMAKE_SOURCE_DIR}/src/main.cpp ${CMAKE_SOURCE_DIR}/src/token/token.cpp
     ${CMAKE_SOURCE_DIR}/src/lexer/lexer.cpp
-    ${CMAKE_SOURCE_DIR}/src/repl/repl.cpp)
+    ${CMAKE_SOURCE_DIR}/src/repl/repl.cpp ${CMAKE_SOURCE_DIR}/src/ast/ast.cpp)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
-target_include_directories(${PROJECT_NAME} PRIVATE src/token src/lexer src/repl)
-
-# target_include_directories
+target_include_directories(${PROJECT_NAME} PRIVATE src/token src/lexer src/repl
+                                                   src/ast)

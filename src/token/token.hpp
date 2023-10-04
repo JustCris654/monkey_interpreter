@@ -61,4 +61,5 @@ typedef struct {
 } Token;
 
 TokenType lookupIdent(std::string &);
+
 #endif
