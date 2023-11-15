@@ -1,3 +1,6 @@
+#ifndef LEXER_H_
+#define LEXER_H_
+
 #include <string>
 
 #include "token.hpp"
@@ -24,3 +27,5 @@ class Lexer {
     size_t readPosition = 0; // current reading position, after current char
     char   byte = 0;         // current char
 };
+
+#endif // LEXER_H_

@@ -14,6 +14,6 @@ void Parser::nextToken() {
     this->peekToken = this->lexer->nextToken();
 }
 
-Program *parseProgram() {
+Program *Parser::parseProgram() {
     return nullptr;
 }

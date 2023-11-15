@@ -26,10 +26,13 @@ target_link_libraries(lexer_test GTest::gtest_main)
 
 add_executable(
   parser_test
-  ${CMAKE_SOURCE_DIR}/tests/parser_test.cpp ${CMAKE_SOURCE_DIR}/src/ast/ast.cpp
+  ${CMAKE_SOURCE_DIR}/tests/parser_test.cpp
+  ${CMAKE_SOURCE_DIR}/src/ast/ast.cpp
   ${CMAKE_SOURCE_DIR}/src/token/token.cpp
+  ${CMAKE_SOURCE_DIR}/src/parser/parser.cpp
   ${CMAKE_SOURCE_DIR}/src/lexer/lexer.cpp)
-target_include_directories(parser_test PRIVATE src/ast src/token src/lexer)
+target_include_directories(parser_test PRIVATE src/ast src/parser src/token
+                                               src/lexer)
 target_link_libraries(parser_test GTest::gtest_main)
 
 include(GoogleTest)

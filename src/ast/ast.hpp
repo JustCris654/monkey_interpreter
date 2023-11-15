@@ -38,6 +38,8 @@ class Program {
   public:
     std::string tokenLiteral();
 
+    const std::vector<Statement> *getStatements();
+
   private:
     std::vector<Statement> statements;
 };

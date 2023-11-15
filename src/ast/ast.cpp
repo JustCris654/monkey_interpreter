@@ -30,6 +30,10 @@ std::string Program::tokenLiteral() {
     }
 }
 
+const std::vector<Statement> *Program::getStatements() {
+    return &this->statements;
+}
+
 void LetStatement::statementNode() {}
 
 std::string LetStatement::tokenLiteral() {
