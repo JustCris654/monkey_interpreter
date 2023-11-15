@@ -8,6 +8,9 @@
 
 class Node {
   public:
+    Node();
+    ~Node();
+
     virtual std::string tokenLiteral();
 };
 

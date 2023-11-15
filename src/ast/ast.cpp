@@ -1,10 +1,26 @@
 #include "ast.hpp"
 
+Node::Node() {}
+
+Node::~Node() {}
+
+std::string Node::tokenLiteral() {
+    return "";
+}
+
 Statement::Statement() : Node() {}
 Statement::~Statement() {}
 
+std::string Statement::tokenLiteral() {
+    return "";
+}
+
 Expression::Expression() : Node() {}
 Expression::~Expression() {}
+
+std::string Expression::tokenLiteral() {
+    return "";
+}
 
 std::string Program::tokenLiteral() {
     if (this->statements.size() > 0) {
